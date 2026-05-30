@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import type { Member } from '../types';
 
 interface MemberSelectorProps {
@@ -9,14 +9,14 @@ interface MemberSelectorProps {
   premiumPayerId: string | number | null;
 }
 
-export default function MemberSelector({ members, currentMember, onSelectMember, groupId, premiumPayerId }: MemberSelectorProps) {
+export default function MemberSelector({ members, currentMember, onSelectMember, groupId }: MemberSelectorProps) {
   const storageKey = `tsukemawari_user_${groupId}`;
 
   useEffect(() => {
     if (currentMember) return;
 
     const cachedMemberId = localStorage.getItem(storageKey);
-    // ⚠️ idの型が文字列(UUID)か数値(number)かに関わらず確実に比較できるよう、型変換をしてチェックします
+    // idの型が文字列(UUID)か数値(number)かに関わらず確実に比較できるよう、型変換をしてチェックします
     if (cachedMemberId && members.length > 0) {
       const found = members.find(m => String(m.id) === String(cachedMemberId));
       if (found) {
@@ -30,7 +30,7 @@ export default function MemberSelector({ members, currentMember, onSelectMember,
     return null;
   }
 
-  // 💡 データの読み込み待ち対策
+  // ータの読み込み待ち対策
   // もしSupabaseからの通信がまだ終わっておらず、メンバーが0人のときは「読み込み中」を表示して待つ
   if (!members || members.length === 0) {
     return (

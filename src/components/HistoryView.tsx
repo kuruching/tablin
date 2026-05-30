@@ -1,11 +1,9 @@
-import React, { useRef } from 'react';
 import MemberSelector from './MemberSelector';
 import TransactionForm from './TransactionForm';
 import type { Member, Transaction } from '../types';
 import { formatCurrency, formatDate } from '../utils/format';
 import { type TranslationKey } from '../config/i18n';
 
-import titleLogo from '../assets/title_logo.svg';
 import titleLogoEn from '../assets/title_logo_en1.svg';
 import titleLogoJa from '../assets/title_logo_ja1.svg';
 import copyIcon from '../assets/copy.svg';
