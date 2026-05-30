@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../config/supabase';
-import type { Member, Transaction, Balances } from '../types';
+import type { Member, Transaction, Balances } from '../types/index';
 
 export function useTsukekomi(groupId: string) {
   const [members, setMembers] = useState<Member[]>([]);
