@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { supabase } from './config/supabase';
 import CreateGroup from './components/CreateGroup';
 import SettingsView from './components/SettingsView';
