@@ -5,6 +5,7 @@ import { type TranslationKey } from '../config/i18n';
 import backIcon from '../assets/back.svg';
 import sunIcon from '../assets/sun.svg';
 import moonIcon from '../assets/moon.svg';
+import './SettingsView.css';
 
 type SettingsViewProps = {
   themeMode: 'light' | 'dark';
@@ -12,7 +13,7 @@ type SettingsViewProps = {
   currentMember: Member | null;
   members: Member[];
   groupStatus: { is_premium: boolean; premium_payer_id: string | number | null };
-  supports: { member_id: string | number }[]; 
+  supports: { member_id: string | number }[];
   locale: string;
   currency: string;
   plusColor: 'blue' | 'red';
@@ -55,12 +56,12 @@ export default function SettingsView({
   onDeleteGroup,
   t,
 }: SettingsViewProps) {
-  
+
   const isDark = themeMode === 'dark';
-  
-  const isSupporter = (currentMember && supports && Array.isArray(supports)) 
-  ? supports.some(s => String(s.member_id) === String(currentMember.id)) 
-  : false;
+
+  const isSupporter = (currentMember && supports && Array.isArray(supports))
+    ? supports.some(s => String(s.member_id) === String(currentMember.id))
+    : false;
 
   const viewBgColor = isDark ? '#111827' : '#f9fafb';
   const cardBgColor = isDark ? '#1f2937' : '#ffffff';
@@ -71,50 +72,15 @@ export default function SettingsView({
 
   const sectionTitleColor = mainTextColor;
 
-  const sectionTitleStyle = { 
-    fontSize: '13px', 
-    fontWeight: '700', 
-    color: sectionTitleColor, 
-    marginBottom: '8px', 
-    marginTop: '16px', 
-    textTransform: 'uppercase' as const, 
-    letterSpacing: '0.05em', 
-    display: 'flex', 
-    alignItems: 'center' 
-  };
-  const cardStyle = { background: cardBgColor, borderRadius: '12px', padding: '16px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', marginBottom: '16px', border: isDark ? `1px solid ${borderColor}` : 'none' };
-  const settingInputStyle = { width: '100%', padding: '10px 12px', border: `1px solid ${inputBorderColor}`, borderRadius: '8px', fontSize: '14px', outline: 'none', boxSizing: 'border-box' as const, backgroundColor: isDark ? '#374151' : '#ffffff', color: mainTextColor };
-  const themeToggleStyle = { flex: 1, padding: '10px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontSize: '13px', cursor: 'pointer', transition: 'all 0.2s ease' };
-
-  const circleButtonStyle = {
-    width: '32px',
-    height: '32px',
-    borderRadius: '50%',
-    backgroundColor: isDark ? '#374151' : '#ffffff',
-    border: 'none',
-    boxShadow: isDark ? '0 2px 4px rgba(0, 0, 0, 0.2)' : '0 2px 4px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.2)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    fontSize: '18px',
-    fontWeight: 'normal',
-    padding: 0,
-    outline: 'none',
-    transition: 'transform 0.1s ease, box-shadow 0.1s ease',
-    lineHeight: '1'
-  };
-
   const getStatusBadge = (isPremium: boolean) => (
-    <span style={{ 
-      fontSize: '10px', 
-      padding: '2px 6px', 
-      borderRadius: '4px', 
-      marginLeft: '6px', 
+    <span style={{
+      fontSize: '10px',
+      padding: '0 6px',
+      borderRadius: '4px',
+      marginLeft: '6px',
       fontWeight: 'bold',
-      backgroundColor: isPremium ? (isDark ? '#064e3b' : '#ecfdf5') : (isDark ? '#374151' : '#f3f4f6'),
-      color: isPremium ? (isDark ? '#34d399' : '#059669') : subTextColor,
-      border: `1px solid ${isPremium ? (isDark ? '#047857' : '#a7f3d0') : borderColor}`,
+      backgroundColor: (isDark ? '#064e3b' : '#cae6d8'),
+      color: (isDark ? '#34d399' : '#059669'),
       textTransform: 'none'
     }}>
       {isPremium ? 'PRO' : 'FREE'}
@@ -139,96 +105,192 @@ export default function SettingsView({
   };
 
   return (
-    <div style={{ width: '100%', maxWidth: '600px', margin: '0 auto', padding: '12px', fontFamily: 'sans-serif', backgroundColor: viewBgColor, minHeight: '100dvh', boxSizing: 'border-box', position: 'relative', paddingTop: '56px', paddingBottom: '40px', transition: 'background-color 0.2s ease' }}>
-      
-      <header style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '52px', backgroundColor: cardBgColor, borderBottom: `1px solid ${borderColor}`, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 16px', zIndex: 1000, boxShadow: '0 1px 2px rgba(0,0,0,0.02)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', width: '100%', maxWidth: '576px', margin: '0 auto', position: 'relative' }}>
-          <button onClick={onBack} style={{ background: 'none', border: 'none', padding: '6px 4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'absolute', left: 0 }} title={t('back')}>
-            <img src={backIcon} alt={t('back')} style={{ width: '20px', height: '20px', filter: isDark ? 'invert(1)' : 'none' }} />
+    <div
+      className="settings-container"
+      style={{
+        '--bg-color': viewBgColor,
+        '--main-text-color': mainTextColor,
+        '--border-color': borderColor,
+        '--card-bg-color': cardBgColor,
+      } as React.CSSProperties}
+    >
+      <header
+        className="settings-header"
+        style={{
+          '--header-bg': cardBgColor,
+          '--header-border': borderColor,
+        } as React.CSSProperties}
+      >
+        <div className="settings-header-inner">
+          <button
+            onClick={onBack}
+            className="settings-back-button"
+            title={t('back')}
+          >
+            <img
+              src={backIcon}
+              alt={t('back')}
+              className="settings-back-icon"
+              style={{ filter: isDark ? 'invert(1)' : 'none' }}
+            />
           </button>
-          <div style={{ margin: '0 auto', fontSize: '16px', fontWeight: 'bold', color: mainTextColor }}>{t('setting')}</div>
+
+          <div className="settings-title">
+            {t('setting')}
+          </div>
         </div>
       </header>
 
-      <div style={{ marginTop: '8px' }}>
-        <div style={sectionTitleStyle}>{t('profile')}
-            {isSupporter && (
-                <span style={{ 
-                fontSize: '10px', 
-                padding: '2px 6px', 
-                borderRadius: '4px', 
-                marginLeft: '6px', 
-                fontWeight: 'bold',
-                backgroundColor: isDark ? '#453511' : '#fffbeb',
-                color: isDark ? '#fef3c7' : '#b45309',
-                border: `1px solid ${isDark ? '#d97706' : '#fcd34d'}`
-                }}>
-                {t('supporter')}
-                </span>
-            )}
+
+      <div className="settings-section" style={{ '--mt': '8px' } as React.CSSProperties}>
+        <div
+          className="settings-section-title"
+          style={{
+            '--section-title-color': sectionTitleColor,
+          } as React.CSSProperties}
+        >
+          {t('profile')}
+          {isSupporter && (
+            <span
+              className="settings-supporter-badge"
+              style={{
+                '--supporter-bg': isDark ? '#453511' : '#fffbeb',
+                '--supporter-color': isDark ? '#fef3c7' : '#b45309',
+                '--supporter-border': isDark ? '#d97706' : '#fcd34d',
+              } as React.CSSProperties}
+            >
+              {t('supporter')}
+            </span>
+          )}
         </div>
-        <div style={cardStyle}>
+        <div
+          className="settings-card"
+          style={{
+            '--card-bg': cardBgColor,
+            '--card-border': borderColor,
+          } as React.CSSProperties}
+        >
           {currentMember ? (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <label style={{ fontSize: '12px', color: subTextColor, fontWeight: '600' }}>{t('displayName')}</label>
+            <div className="settings-profile-fields">
+              <div className="settings-profile-label-row">
+                <label
+                  className="settings-profile-label"
+                  style={{ '--sub-text-color': subTextColor } as React.CSSProperties}
+                >
+                  {t('displayName')}
+                </label>
               </div>
-              <input 
-                type="text" 
+
+              <input
+                type="text"
                 value={localName}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                style={settingInputStyle} 
+                className="settings-input"
+                style={{
+                  '--input-bg': isDark ? '#374151' : '#ffffff',
+                  '--input-border': inputBorderColor,
+                  '--input-text': mainTextColor,
+                } as React.CSSProperties}
                 placeholder={t('newDisplayName')}
               />
-              <span style={{ fontSize: '11px', color: '#9ca3af', textAlign: 'left' }}>{t('displayNameWarning')}</span>
+
+              <span className="settings-profile-warning">
+                {t('displayNameWarning')}
+              </span>
             </div>
           ) : (
-            <p style={{ margin: 0, fontSize: '14px', color: '#9ca3af' }}>{t('noUserSelected')}</p>
+            <p className="settings-no-user">{t('noUserSelected')}</p>
           )}
         </div>
 
-        <div style={sectionTitleStyle}>
+        <div
+          className="settings-section-title"
+          style={{ '--section-title-color': sectionTitleColor } as React.CSSProperties}
+        >
           {t('groupMembers')}
           {getStatusBadge(groupStatus.is_premium)}
         </div>
-        <div style={cardStyle}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '14px' }}>
+        <div
+          className="settings-card"
+          style={{
+            '--card-bg': cardBgColor,
+            '--card-border': borderColor,
+          } as React.CSSProperties}
+        >
+          <div className="settings-members-list">
             {members.map(m => {
               const isCurrent = currentMember?.id === m.id;
               return (
-                <div key={m.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 0', borderBottom: `1px solid ${borderColor}` }}>
-                  <span style={{ fontSize: '14px', color: mainTextColor, fontWeight: '400' }}>
-                    {m.name} {isCurrent && <span style={{ fontSize: '11px', color: isDark ? '#60a5fa' : '#1d4ed8', backgroundColor: isDark ? '#1e3a8a' : '#eff6ff', padding: '2px 6px', borderRadius: '4px', marginLeft: '4px', fontWeight: '400' }}>{t('you')}</span>}
+                <div
+                  key={m.id}
+                  className="settings-member-row"
+                  style={{ '--member-border': borderColor } as React.CSSProperties}
+                >
+                  <span
+                    className="settings-member-name"
+                    style={{ '--main-text-color': mainTextColor } as React.CSSProperties}
+                  >
+                    {m.name}{' '}
+                    {isCurrent && (
+                      <span
+                        className="settings-member-you"
+                        style={{
+                          '--you-color': isDark ? '#60a5fa' : '#1d4ed8',
+                          '--you-bg': isDark ? '#1e3a8a' : '#cadef8',
+                        } as React.CSSProperties}
+                      >
+                        {t('you')}
+                      </span>
+                    )}
                   </span>
                   {!isCurrent ? (
-                    <button 
-                      onClick={() => onDeleteMember(m.id)} 
-                      style={{ ...circleButtonStyle, color: mainTextColor }}
+                    <button
+                      onClick={() => onDeleteMember(m.id)}
+                      className="settings-circle-button"
+                      style={{
+                        '--circle-bg': isDark ? '#374151' : '#ffffff',
+                        '--circle-shadow': isDark
+                          ? '0 2px 4px rgba(0, 0, 0, 0.2)'
+                          : '0 2px 4px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.2)',
+                        '--circle-color': mainTextColor,
+                      } as React.CSSProperties}
                       title={t('remove')}
                     >
                       {t('minusMark')}
                     </button>
                   ) : (
-                    <div style={{ width: '32px', height: '32px' }} />
+                    <div className="settings-member-placeholder" />
                   )}
                 </div>
               );
             })}
           </div>
-          
+
           {members.length < 4 && (
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '16px' }}>
-              <input 
-                type="text" 
-                placeholder={t('newMemberName')} 
-                value={newMemberName} 
-                onChange={(e) => setNewMemberName(e.target.value)} 
-                style={{ ...settingInputStyle, flex: 1 }} 
+            <div className="settings-member-add-row">
+              <input
+                type="text"
+                placeholder={t('newMemberName')}
+                value={newMemberName}
+                onChange={(e) => setNewMemberName(e.target.value)}
+                className="settings-input settings-input-flex"
+                style={{
+                  '--input-bg': isDark ? '#374151' : '#ffffff',
+                  '--input-border': inputBorderColor,
+                  '--input-text': mainTextColor,
+                } as React.CSSProperties}
               />
-              <button 
-                onClick={onAddMember} 
-                style={{ ...circleButtonStyle, color: isDark ? '#ffffff' : '#000000' }}
+              <button
+                onClick={onAddMember}
+                className="settings-circle-button"
+                style={{
+                  '--circle-bg': isDark ? '#374151' : '#ffffff',
+                  '--circle-shadow': isDark
+                    ? '0 2px 4px rgba(0, 0, 0, 0.2)'
+                    : '0 2px 4px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.2)',
+                  '--circle-color': isDark ? '#ffffff' : '#000000',
+                } as React.CSSProperties}
                 title={t('add')}
               >
                 {t('plusMark')}
@@ -236,65 +298,193 @@ export default function SettingsView({
             </div>
           )}
 
-          <div style={{ backgroundColor: isDark ? '#374151' : '#f9fafb', border: `1px dashed ${inputBorderColor}`, borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
-            <span style={{ fontSize: '13px', color: subTextColor, fontWeight: '500' , display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+          <div
+            className="settings-unlock-box"
+            style={{
+              '--unlock-bg': isDark ? '#374151' : '#f9fafb',
+              '--unlock-border': inputBorderColor,
+            } as React.CSSProperties}
+          >
+            <span
+              className="settings-unlock-title"
+              style={{ '--sub-text-color': subTextColor } as React.CSSProperties}
+            >
               {t('unlockMemberLimit')}
-              <span style={{ fontSize: '11px', backgroundColor: isDark ? '#4b5563' : '#e5e7eb', color: subTextColor, padding: '2px 6px', borderRadius: '4px', fontWeight: 'bold' }}>{t('comingSoon')}</span>
+
+              <span
+                className="settings-unlock-badge"
+                style={{
+                  '--badge-bg': isDark ? '#4b5563' : '#e5e7eb',
+                  '--badge-color': subTextColor,
+                } as React.CSSProperties}
+              >
+                {t('comingSoon')}
+              </span>
             </span>
-            <p style={{ margin: '6px 0 0 0', fontSize: '11px', color: '#9ca3af' }}>
+            <p className="settings-unlock-desc">
               🔒 {t('unlockMemberDetails')}
             </p>
           </div>
         </div>
 
-        <div style={sectionTitleStyle}>{t('theme')}</div>
-        <div style={cardStyle}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'left' }}>
+        <div
+          className="settings-section-title"
+          style={{ '--section-title-color': sectionTitleColor } as React.CSSProperties}
+        >
+          {t('theme')}
+        </div>
+        <div
+          className="settings-card"
+          style={{
+            '--card-bg': cardBgColor,
+            '--card-border': borderColor,
+          } as React.CSSProperties}
+        >
+          <div className="settings-theme-container">
             <div>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: subTextColor, marginBottom: '6px' }}>{t('mode')}</label>
-              <div style={{ display: 'flex', gap: '8px' }}>
-                <button 
+              <label
+                className="settings-theme-label"
+                style={{ '--sub-text-color': subTextColor } as React.CSSProperties}
+              >
+                {t('mode')}
+              </label>
+
+              <div className="settings-theme-toggle-row">
+                {/* Light */}
+                <button
                   onClick={() => setThemeMode('light')}
-                  style={{ 
-                    ...themeToggleStyle, 
-                    border: !isDark ? `2px solid ${mainTextColor}` : `1px solid ${borderColor}`, 
-                    backgroundColor: !isDark ? cardBgColor : (isDark ? '#374151' : '#f3f4f6'), 
-                    color: !isDark ? mainTextColor : '#9ca3af', 
-                    fontWeight: !isDark ? '600' : '400' 
-                  }}
+                  className="settings-theme-toggle"
+                  style={{
+                    '--toggle-border': !isDark ? `2px solid ${mainTextColor}` : `1px solid ${borderColor}`,
+                    '--toggle-bg': !isDark ? cardBgColor : (isDark ? '#374151' : '#f3f4f6'),
+                    '--toggle-color': !isDark ? mainTextColor : '#9ca3af',
+                    '--toggle-weight': !isDark ? '600' : '400',
+                  } as React.CSSProperties}
                 >
-                  <img src={sunIcon} alt="Light" style={{ width: '16px', height: '16px', filter: isDark ? 'invert(1)' : 'none' }} /> {t('light')}
+                  <img
+                    src={sunIcon}
+                    alt="Light"
+                    className="settings-theme-icon"
+                    style={{ filter: isDark ? 'invert(1)' : 'none' }}
+                  />
+                  {t('light')}
                 </button>
-                <button 
+
+                {/* Dark */}
+                <button
                   onClick={() => setThemeMode('dark')}
-                  style={{ 
-                    ...themeToggleStyle, 
-                    border: isDark ? `2px solid ${mainTextColor}` : `1px solid ${borderColor}`, 
-                    backgroundColor: isDark ? cardBgColor : (isDark ? '#374151' : '#f3f4f6'), 
-                    color: isDark ? mainTextColor : '#6b7280', 
-                    fontWeight: isDark ? '600' : '400' 
-                  }}
+                  className="settings-theme-toggle"
+                  style={{
+                    '--toggle-border': isDark ? `2px solid ${mainTextColor}` : `1px solid ${borderColor}`,
+                    '--toggle-bg': isDark ? cardBgColor : (isDark ? '#374151' : '#f3f4f6'),
+                    '--toggle-color': isDark ? mainTextColor : '#6b7280',
+                    '--toggle-weight': isDark ? '600' : '400',
+                  } as React.CSSProperties}
                 >
-                  <img src={moonIcon} alt="Dark" style={{ width: '16px', height: '16px', filter: isDark ? 'invert(1)' : 'none' }} /> {t('dark')}
+                  <img
+                    src={moonIcon}
+                    alt="Dark"
+                    className="settings-theme-icon"
+                    style={{ filter: isDark ? 'invert(1)' : 'none' }}
+                  />
+                  {t('dark')}
                 </button>
               </div>
             </div>
 
-            <div style={{ borderTop: `1px solid ${borderColor}`, paddingTop: '16px' }}>
-              <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: subTextColor, marginBottom: '14px' }}>{t('plColor')}</label>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingLeft: '16px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '13px', color: subTextColor, fontWeight: '500' }}>{t('plus')}</span>
-                  <div style={{ display: 'flex', background: isDark ? '#374151' : '#f3f4f6', padding: '3px', borderRadius: '9px', width: '100px' }}>
-                    <button type="button" onClick={() => onPlusColorChange('blue')} style={{ flex: 1, border: 'none', padding: '6px 0', fontSize: '12px', borderRadius: '7px', cursor: 'pointer', backgroundColor: plusColor === 'blue' ? cardBgColor : 'transparent', color: plusColor === 'blue' ? (isDark ? '#60a5fa' : '#2563eb') : subTextColor }}>{t('blue')}</button>
-                    <button type="button" onClick={() => onPlusColorChange('red')} style={{ flex: 1, border: 'none', padding: '6px 0', fontSize: '12px', borderRadius: '7px', cursor: 'pointer', backgroundColor: plusColor === 'red' ? cardBgColor : 'transparent', color: plusColor === 'red' ? (isDark ? '#f87171' : '#dc2626') : subTextColor }}>{t('red')}</button>
+            <div
+              className="settings-theme-divider"
+              style={{ '--border-color': borderColor } as React.CSSProperties}
+            >
+              <label
+                className="settings-theme-label"
+                style={{ '--sub-text-color': subTextColor } as React.CSSProperties}
+              >
+                {t('plColor')}
+              </label>
+
+              <div className="settings-theme-color-container">
+                {/* Plus */}
+                <div className="settings-theme-color-row">
+                  <span
+                    className="settings-theme-color-label"
+                    style={{ '--sub-text-color': subTextColor } as React.CSSProperties}
+                  >
+                    {t('plus')}
+                  </span>
+
+                  <div
+                    className="settings-theme-color-switch"
+                    style={{ '--switch-bg': isDark ? '#374151' : '#f3f4f6' } as React.CSSProperties}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => onPlusColorChange('blue')}
+                      className="settings-theme-color-button"
+                      style={{
+                        '--btn-bg': plusColor === 'blue' ? cardBgColor : 'transparent',
+                        '--btn-color': plusColor === 'blue'
+                          ? (isDark ? '#60a5fa' : '#2563eb')
+                          : subTextColor,
+                      } as React.CSSProperties}
+                    >
+                      {t('blue')}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => onPlusColorChange('red')}
+                      className="settings-theme-color-button"
+                      style={{
+                        '--btn-bg': plusColor === 'red' ? cardBgColor : 'transparent',
+                        '--btn-color': plusColor === 'red'
+                          ? (isDark ? '#f87171' : '#dc2626')
+                          : subTextColor,
+                      } as React.CSSProperties}
+                    >
+                      {t('red')}
+                    </button>
                   </div>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '13px', color: subTextColor, fontWeight: '500' }}>{t('minus')}</span>
-                  <div style={{ display: 'flex', background: isDark ? '#374151' : '#f3f4f6', padding: '3px', borderRadius: '9px', width: '100px' }}>
-                    <button type="button" onClick={() => onMinusColorChange('blue')} style={{ flex: 1, border: 'none', padding: '6px 0', fontSize: '12px', borderRadius: '7px', cursor: 'pointer', backgroundColor: minusColor === 'blue' ? cardBgColor : 'transparent', color: minusColor === 'blue' ? (isDark ? '#60a5fa' : '#2563eb') : subTextColor }}>{t('blue')}</button>
-                    <button type="button" onClick={() => onMinusColorChange('red')} style={{ flex: 1, border: 'none', padding: '6px 0', fontSize: '12px', borderRadius: '7px', cursor: 'pointer', backgroundColor: minusColor === 'red' ? cardBgColor : 'transparent', color: minusColor === 'red' ? (isDark ? '#f87171' : '#dc2626') : subTextColor }}>{t('red')}</button>
+                <div className="settings-theme-color-row">
+                  <span
+                    className="settings-theme-color-label"
+                    style={{ '--sub-text-color': subTextColor } as React.CSSProperties}
+                  >
+                    {t('minus')}
+                  </span>
+
+                  <div
+                    className="settings-theme-color-switch"
+                    style={{ '--switch-bg': isDark ? '#374151' : '#f3f4f6' } as React.CSSProperties}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => onMinusColorChange('blue')}
+                      className="settings-theme-color-button"
+                      style={{
+                        '--btn-bg': minusColor === 'blue' ? cardBgColor : 'transparent',
+                        '--btn-color': minusColor === 'blue'
+                          ? (isDark ? '#60a5fa' : '#2563eb')
+                          : subTextColor,
+                      } as React.CSSProperties}
+                    >
+                      {t('blue')}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => onMinusColorChange('red')}
+                      className="settings-theme-color-button"
+                      style={{
+                        '--btn-bg': minusColor === 'red' ? cardBgColor : 'transparent',
+                        '--btn-color': minusColor === 'red'
+                          ? (isDark ? '#f87171' : '#dc2626')
+                          : subTextColor,
+                      } as React.CSSProperties}
+                    >
+                      {t('red')}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -302,31 +492,65 @@ export default function SettingsView({
           </div>
         </div>
 
-        <div style={sectionTitleStyle}>{t('languageCurrency')}</div>
-        <div style={{ ...cardStyle, position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'flex', gap: '12px', textAlign: 'left' }}>
-            <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', fontSize: '12px', color: subTextColor, marginBottom: '4px' }}>{t('language')}</label>
-            <select 
-                value={locale} 
-                onChange={(e) => onLocaleChange(e.target.value)} 
-                style={{ ...settingInputStyle, cursor: 'pointer', appearance: 'auto' }}
-            >
+        <div
+          className="settings-section-title"
+          style={{ '--section-title-color': sectionTitleColor } as React.CSSProperties}
+        >
+          {t('languageCurrency')}
+        </div>
+        <div
+          className="settings-card settings-langcard"
+          style={{
+            '--card-bg': cardBgColor,
+            '--card-border': borderColor,
+          } as React.CSSProperties}
+        >
+          <div className="settings-langcur-container">
+            {/* Language */}
+            <div className="settings-langcur-column">
+              <label
+                className="settings-langcur-label"
+                style={{ '--sub-text-color': subTextColor } as React.CSSProperties}
+              >
+                {t('language')}
+              </label>
+
+              <select
+                value={locale}
+                onChange={(e) => onLocaleChange(e.target.value)}
+                className="settings-input settings-langcur-select"
+                style={{
+                  '--input-bg': isDark ? '#374151' : '#ffffff',
+                  '--input-border': inputBorderColor,
+                  '--input-text': mainTextColor,
+                } as React.CSSProperties}
+              >
                 <option value="ja-JP">日本語 (ja-JP)</option>
                 <option value="en-US">English (en-US)</option>
                 {/*
                 <option value="zh-TW">繁體中文 (zh-TW)</option>
                 <option value="ko-KR">한국어 (ko-KR)</option>
                 */}
-            </select>
+              </select>
             </div>
-            <div style={{ flex: 1 }}>
-            <label style={{ display: 'block', fontSize: '12px', color: subTextColor, marginBottom: '4px' }}>{t('currency')}</label>
-            <select 
-                value={currency} 
-                onChange={(e) => onCurrencyChange(e.target.value)} 
-                style={{ ...settingInputStyle, cursor: 'pointer', appearance: 'auto' }}
-            >
+            <div className="settings-langcur-column">
+              <label
+                className="settings-langcur-label"
+                style={{ '--sub-text-color': subTextColor } as React.CSSProperties}
+              >
+                {t('currency')}
+              </label>
+
+              <select
+                value={currency}
+                onChange={(e) => onCurrencyChange(e.target.value)}
+                className="settings-input settings-langcur-select"
+                style={{
+                  '--input-bg': isDark ? '#374151' : '#ffffff',
+                  '--input-border': inputBorderColor,
+                  '--input-text': mainTextColor,
+                } as React.CSSProperties}
+              >
                 <option value="JPY">JPY (¥)</option>
                 <option value="USD">USD ($)</option>
                 <option value="EUR">EUR (€)</option>
@@ -334,40 +558,96 @@ export default function SettingsView({
                 <option value="KRW">KRW (₩)</option>
                 <option value="TWD">TWD (NT$)</option>
                 */}
-            </select>
+              </select>
             </div>
-        </div>
-        </div>
-
-        <div style={sectionTitleStyle}>
-          {t('dataManagement')}
-          {getStatusBadge(groupStatus.is_premium)}
-        </div>
-        <div style={cardStyle}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ flex: 1, paddingRight: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <span style={{ fontSize: '14px', fontWeight: '600', color: subTextColor }}>{t('exportCsv')}</span>
-              </div>
-              <p style={{ margin: '4px 0 0 0', fontSize: '11px', color: '#9ca3af' }}>
-                🔒 {t('exportCsvDetails')}
-              </p>
-            </div>
-            <span style={{ fontSize: '11px', backgroundColor: isDark ? '#4b5563' : '#e5e7eb', color: subTextColor, padding: '4px 8px', borderRadius: '4px', fontWeight: 'bold' }}>{t('comingSoon')}</span>
           </div>
         </div>
 
-        <div style={sectionTitleStyle}>{t('reset')}</div>
-        <div style={{ ...cardStyle, border: '1px solid #fca5a5', backgroundColor: isDark ? '#7f1d1d' : '#fff5f5' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div style={{ flex: 1, paddingRight: '12px' }}>
-              <span style={{ fontSize: '14px', fontWeight: '600', color: isDark ? '#fca5a5' : '#991b1b' }}>{t('deleteGroupDetails')}</span>
-              <p style={{ margin: 0, fontSize: '11px', color: isDark ? '#f87171' : '#ef4444' }}>{t('deleteGroupWarning')}</p>
+        <div
+          className="settings-section-title"
+          style={{ '--section-title-color': sectionTitleColor } as React.CSSProperties}
+        >
+          {t('dataManagement')}
+          {getStatusBadge(groupStatus.is_premium)}
+        </div>
+        <div
+          className="settings-card"
+          style={{
+            '--card-bg': cardBgColor,
+            '--card-border': borderColor,
+          } as React.CSSProperties}
+        >
+          <div className="settings-dm-row">
+            <div className="settings-dm-left">
+              <div className="settings-dm-title-row">
+                <span
+                  className="settings-dm-title"
+                  style={{ '--sub-text-color': subTextColor } as React.CSSProperties}
+                >
+                  {t('exportCsv')}
+                </span>
+              </div>
+
+              <p className="settings-dm-desc">
+                🔒 {t('exportCsvDetails')}
+              </p>
             </div>
-            <button onClick={() => {
+
+            <span
+              className="settings-dm-badge"
+              style={{
+                '--badge-bg': isDark ? '#4b5563' : '#e5e7eb',
+                '--badge-color': subTextColor,
+              } as React.CSSProperties}
+            >
+              {t('comingSoon')}
+            </span>
+          </div>
+        </div>
+
+        <div
+          className="settings-section-title"
+          style={{ '--section-title-color': sectionTitleColor } as React.CSSProperties}
+        >
+          {t('reset')}
+        </div>
+        <div
+          className="settings-reset-card"
+          style={{
+            '--card-bg': isDark ? '#7f1d1d' : '#fff5f5',
+            '--card-border': '#fca5a5',
+          } as React.CSSProperties}
+        >
+          <div className="settings-reset-row">
+            <div className="settings-reset-left">
+              <span
+                className="settings-reset-title"
+                style={{
+                  '--reset-title-color': isDark ? '#fca5a5' : '#991b1b',
+                } as React.CSSProperties}
+              >
+                {t('deleteGroupDetails')}
+              </span>
+
+              <p
+                className="settings-reset-warning"
+                style={{
+                  '--reset-warning-color': isDark ? '#f87171' : '#ef4444',
+                } as React.CSSProperties}
+              >
+                {t('deleteGroupWarning')}
+              </p>
+            </div>
+
+            <button
+              onClick={() => {
                 const isConfirmed = window.confirm(t('confirmDeleteGroup'));
                 if (isConfirmed) onDeleteGroup();
-            }} style={{ width: '135px', padding: '8px 0', borderRadius: '6px', border: 'none', backgroundColor: '#dc2626', color: '#fff', fontSize: '12px', fontWeight: '600', cursor: 'pointer' }}>{t('deleteGroup')}</button>
+              }}
+              className="settings-reset-button"
+            >
+              {t('deleteGroup')}
+            </button>
           </div>
         </div>
       </div>

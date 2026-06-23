@@ -90,6 +90,10 @@ export const messages = {
     optionalInput: "任意入力",
     optional: "任意",
     addMember: "メンバーを追加",
+    registerFree: "登録不要ですぐ使える。基本機能は無料。",
+    simpleShare: "URLを共有するだけで、貸し借りをシンプルに管理。",
+    exportCsvAll: "全履歴CSV出力",
+    autoDeleteOneYear: "一年放置のURLは自動削除",
   },
   'en-US': {
     menu: 'Menu',
@@ -182,6 +186,10 @@ export const messages = {
     optionalInput: "Optional input",
     optional: "Opt.",
     addMember: "Add member",
+    registerFree: "No registration required. Basic features are free.",
+    simpleShare: "Just share the URL to manage lending and borrowing easily.",
+    exportCsvAll: "Export full history as CSV",
+    autoDeleteOneYear: "URLs inactive for one year are automatically deleted",
   },
   // 必要に応じて zh-TW, ko-KR も追加
 } as const;

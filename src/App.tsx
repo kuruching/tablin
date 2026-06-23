@@ -36,17 +36,22 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isNotFound, setIsNotFound] = useState<boolean>(false);
   const [groupStatus, setGroupStatus] = useState<GroupStatus>({ is_premium: false, premium_payer_id: null });
-  
+  const [supports, setSupports] = useState<{ member_id: string | number }[]>([]);
   const [plusColor, setPlusColor] = useState<'blue' | 'red'>(() => 
     (localStorage.getItem('tsukemawari_plusColor') as 'blue' | 'red') || 'blue'
   );
   const [minusColor, setMinusColor] = useState<'red' | 'blue'>(() => 
     (localStorage.getItem('tsukemawari_minusColor') as 'red' | 'blue') || 'red'
   );
-  const [supports, setSupports] = useState<{ member_id: string | number }[]>([]);
-  const [locale, setLocale] = useState<Locale>(() => 
-    (localStorage.getItem('tsukemawari_locale') as Locale) || 'ja-JP'
-  );
+  const [locale, setLocale] = useState<Locale>(() => {
+    const saved = localStorage.getItem('tsukemawari_locale');
+    if (saved) {
+      return saved as Locale;
+    }
+    return navigator.language.startsWith('ja')
+      ? 'ja-JP'
+      : 'en-US';
+  });
   const [currency, setCurrency] = useState<string>(() => 
     localStorage.getItem('tsukemawari_currency') || 'JPY'
   );
