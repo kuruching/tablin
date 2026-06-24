@@ -1,0 +1,99 @@
+.history {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 12px;
+  box-sizing: border-box;
+  font-family: system-ui;
+}
+
+.history.dark {
+  background: #111827;
+  color: #f9fafb;
+}
+
+.history.light {
+  background: #f9fafb;
+  color: #111827;
+}
+
+/* HEADER */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+  height: 40px;
+}
+
+.menuBtn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 22px;
+}
+
+/* BALANCE */
+.balanceCard {
+  margin-top: 70px;
+  padding: 16px;
+  background: white;
+  border-radius: 12px;
+}
+
+/* HISTORY */
+.historyCard {
+  margin-top: 16px;
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.empty {
+  text-align: center;
+  color: #9ca3af;
+}
+
+/* ROW */
+.row {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.desc {
+  flex: 1;
+}
+
+/* FAB */
+.fab {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #111827;
+  color: white;
+  font-size: 28px;
+}

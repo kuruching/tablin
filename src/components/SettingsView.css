@@ -1,0 +1,482 @@
+/* ===== スマホ（iOS/Android）対策 ===== */
+
+/* フォントを全体に適用 */
+body {
+  font-family: sans-serif;
+}
+
+/* Safari の自動ダークモード上書きを防ぐ */
+input, button, select, textarea {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+/* テキスト中央寄せを防ぐ */
+select {
+  text-align: left;
+}
+
+/* iOS の勝手な角丸を防ぐ */
+input, button, select {
+  border-radius: inherit;
+}
+
+.settings-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 12px;
+  font-family: sans-serif;
+  background-color: var(--bg-color);
+  min-height: 100dvh;
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 56px;
+  padding-bottom: 40px;
+  transition: background-color 0.2s ease;
+}
+
+/* Header */
+.settings-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  z-index: 1000;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.settings-header-inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 576px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.settings-back-button {
+  background: none;
+  border: none;
+  padding: 6px 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+}
+
+.settings-back-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.settings-title {
+  margin: 0 auto;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--main-text-color);
+}
+
+.settings-section {
+  margin-top: var(--mt);
+}
+
+/* Section Title */
+.settings-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--section-title-color);
+  margin-bottom: 8px;
+  margin-top: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+}
+
+/* Supporter Badge */
+.settings-supporter-badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+  font-weight: bold;
+  background-color: var(--supporter-bg);
+  color: var(--supporter-color);
+  border: 1px solid var(--supporter-border);
+}
+
+/* Card */
+.settings-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+  border: 1px solid var(--card-border);
+}
+
+/* Profile Fields */
+.settings-profile-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-profile-label-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-profile-label {
+  font-size: 12px;
+  color: var(--sub-text-color);
+  font-weight: 600;
+}
+
+/* Input */
+.settings-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+}
+
+/* Warning */
+.settings-profile-warning {
+  font-size: 11px;
+  color: #9ca3af;
+  text-align: left;
+}
+
+/* No user selected */
+.settings-no-user {
+  margin: 0;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+/* Members list container */
+.settings-members-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+/* Each member row */
+.settings-member-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--member-border);
+}
+
+/* Member name */
+.settings-member-name {
+  font-size: 14px;
+  color: var(--main-text-color);
+  font-weight: 400;
+}
+
+/* "You" badge */
+.settings-member-you {
+  font-size: 11px;
+  color: var(--you-color);
+  background-color: var(--you-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+  font-weight: 400;
+}
+
+/* Circle button (delete / add) */
+.settings-circle-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--circle-bg);
+  border: none;
+  box-shadow: var(--circle-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0;
+  outline: none;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  color: var(--circle-color);
+}
+
+/* Placeholder for current user */
+.settings-member-placeholder {
+  width: 32px;
+  height: 32px;
+}
+
+/* Add member row */
+.settings-member-add-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.settings-input-flex {
+  flex: 1;
+}
+
+/* Unlock Member Limit Box */
+.settings-unlock-box {
+  background-color: var(--unlock-bg);
+  border: 1px dashed var(--unlock-border);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.settings-unlock-title {
+  font-size: 13px;
+  color: var(--sub-text-color);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.settings-unlock-badge {
+  font-size: 11px;
+  background-color: var(--badge-bg);
+  color: var(--badge-color);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.settings-unlock-desc {
+  margin: 6px 0 0 0;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* Theme Section (既存の theme CSS と統合可能) */
+.settings-theme-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.settings-theme-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sub-text-color);
+  margin-bottom: 6px;
+}
+
+.settings-theme-toggle-row {
+  display: flex;
+  gap: 8px;
+}
+
+.settings-theme-toggle {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: var(--toggle-border);
+  background-color: var(--toggle-bg);
+  color: var(--toggle-color);
+  font-weight: var(--toggle-weight);
+}
+
+.settings-theme-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.settings-theme-divider {
+  border-top: 1px solid var(--border-color);
+  padding-top: 16px;
+}
+
+.settings-theme-color-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 16px;
+}
+
+.settings-theme-color-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settings-theme-color-label {
+  font-size: 13px;
+  color: var(--sub-text-color);
+  font-weight: 500;
+}
+
+.settings-theme-color-switch {
+  display: flex;
+  background: var(--switch-bg);
+  padding: 3px;
+  border-radius: 9px;
+  width: 100px;
+}
+
+.settings-theme-color-button {
+  flex: 1;
+  border: none;
+  padding: 6px 0;
+  font-size: 12px;
+  border-radius: 7px;
+  cursor: pointer;
+  background-color: var(--btn-bg);
+  color: var(--btn-color);
+}
+
+/* Language & Currency Card */
+.settings-langcard {
+  position: relative;
+  z-index: 1;
+}
+
+.settings-langcur-container {
+  display: flex;
+  gap: 12px;
+  text-align: left;
+}
+
+.settings-langcur-column {
+  flex: 1;
+}
+
+.settings-langcur-label {
+  display: block;
+  font-size: 12px;
+  color: var(--sub-text-color);
+  margin-bottom: 4px;
+}
+
+.settings-langcur-select {
+  cursor: pointer;
+  appearance: auto;
+}
+
+/* Data Management Row */
+.settings-dm-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Left side */
+.settings-dm-left {
+  flex: 1;
+  padding-right: 8px;
+}
+
+.settings-dm-title-row {
+  display: flex;
+  align-items: center;
+}
+
+.settings-dm-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sub-text-color);
+}
+
+.settings-dm-desc {
+  margin: 4px 0 0 0;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* Coming Soon Badge */
+.settings-dm-badge {
+  font-size: 11px;
+  background-color: var(--badge-bg);
+  color: var(--badge-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Reset Card */
+.settings-reset-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+}
+
+/* Row */
+.settings-reset-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Left side */
+.settings-reset-left {
+  flex: 1;
+  padding-right: 12px;
+}
+
+.settings-reset-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--reset-title-color);
+}
+
+.settings-reset-warning {
+  margin: 0;
+  font-size: 11px;
+  color: var(--reset-warning-color);
+}
+
+/* Delete button */
+.settings-reset-button {
+  width: 135px;
+  padding: 8px 0;
+  border-radius: 6px;
+  border: none;
+  background-color: #dc2626;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}

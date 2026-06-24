@@ -1,0 +1,162 @@
+.support-view {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 56px;
+  font-family: sans-serif;
+}
+
+/* ===== Light ===== */
+
+.support-view.light {
+  --bg: #f9fafb;
+  --card: #ffffff;
+  --text: #111827;
+  --subtext: #4b5563;
+  --border: #e5e7eb;
+}
+
+/* ===== Dark ===== */
+
+.support-view.dark {
+  --bg: #111827;
+  --card: #1f2937;
+  --text: #f9fafb;
+  --subtext: #d1d5db;
+  --border: #374151;
+}
+
+.support-view {
+  background: var(--bg);
+}
+
+/* ===== Header ===== */
+
+.support-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 52px;
+
+  background: var(--card);
+
+  border-bottom: 1px solid var(--border);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 16px;
+
+  z-index: 1000;
+}
+
+.support-header-inner {
+  width: 100%;
+  max-width: 576px;
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+
+  margin: 0 auto;
+}
+
+.support-title {
+  margin: 0 auto;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  color: var(--text);
+}
+
+.support-back-button {
+  position: absolute;
+  left: 0;
+
+  background: none;
+  border: none;
+
+  padding: 6px 4px;
+
+  cursor: pointer;
+}
+
+.support-back-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-dark {
+  filter: invert(1);
+}
+
+/* ===== Content ===== */
+
+.support-content {
+  padding: 12px;
+  margin-top: 24px;
+}
+
+.support-card {
+  background: var(--card);
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  padding: 24px;
+
+  text-align: center;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.support-message {
+  color: var(--subtext);
+
+  font-size: 15px;
+  line-height: 1.6;
+
+  margin: 0 0 24px 0;
+}
+
+/* ===== Buttons ===== */
+
+.support-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+
+  margin-top: 24px;
+}
+
+.support-button {
+  display: inline-block;
+
+  padding: 14px 20px;
+
+  border-radius: 8px;
+
+  background: #10b981;
+
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  text-decoration: none;
+
+  transition: opacity 0.2s ease;
+}
+
+.support-button:hover {
+  opacity: 0.9;
+}
