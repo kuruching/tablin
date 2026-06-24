@@ -11,6 +11,7 @@ import demo3 from '../assets/demo3.svg';
 import demo4 from '../assets/demo4.svg';
 import demo5 from '../assets/demo5.svg';
 import clearIcon from '../assets/clear.svg';
+import lineIcon from '../assets/comment.svg';
 import './CreateGroup.css';
 
 type CreateGroupProps = {
@@ -233,7 +234,7 @@ return (
         className="cg-line-btn"
         target="_blank"
       >
-        LINE
+        <img src={lineIcon} alt="line" className="line-icon"/>LINE
       </a>
     </div>
   </div>

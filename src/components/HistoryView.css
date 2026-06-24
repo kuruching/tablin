@@ -1,99 +1,304 @@
-.history {
+/* =========================
+   ROOT CONTAINER
+========================= */
+
+.hv-container {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
   padding: 12px;
+  padding-top: 56px;
+  padding-bottom: 24px;
+  min-height: 100dvh;
+  background-color: var(--view-bg);
+  font-family: sans-serif;
   box-sizing: border-box;
-  font-family: system-ui;
+  position: relative;
+  transition: background-color 0.2s ease;
 }
 
-.history.dark {
-  background: #111827;
-  color: #f9fafb;
-}
+/* =========================
+   HEADER
+========================= */
 
-.history.light {
-  background: #f9fafb;
-  color: #111827;
-}
-
-/* HEADER */
-.header {
+.hv-header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: 52px;
+  background-color: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 0 16px;
+  z-index: 1000;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.logo {
-  height: 40px;
-}
-
-.menuBtn {
-  position: absolute;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 22px;
-}
-
-/* BALANCE */
-.balanceCard {
-  margin-top: 70px;
-  padding: 16px;
-  background: white;
-  border-radius: 12px;
-}
-
-/* HISTORY */
-.historyCard {
-  margin-top: 16px;
-  background: white;
-  border-radius: 12px;
-  padding: 12px;
-}
-
-.empty {
-  text-align: center;
-  color: #9ca3af;
-}
-
-/* ROW */
-.row {
-  padding: 12px 0;
-  border-bottom: 1px solid #eee;
-}
-
-.top {
-  display: flex;
-  justify-content: space-between;
-}
-
-.bottom {
+.hv-header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  max-width: 576px;
+  margin: 0 auto;
 }
 
-.desc {
+.hv-logo-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.hv-logo {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  padding: 6px 0 4px 0;
+  margin: 0;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.hv-menu-wrap {
+  position: relative;
+}
+
+.hv-menu-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--sub-text);
+  cursor: pointer;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.hv-menu-panel {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  width: 200px;
+  padding: 4px 0;
+  z-index: 1010;
+}
+
+.hv-menu-item {
+  width: 100%;
+  padding: 14px 16px;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: var(--main-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.hv-menu-item:hover {
+  background-color: rgba(0,0,0,0.05);
+}
+
+.hv-menu-divider {
+  border-top: 1px solid var(--item-border);
+}
+
+/* =========================
+   BALANCE CARD
+========================= */
+
+.hv-balance-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 8px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.hv-balance-text {
+  font-size: 14px;
+  color: var(--sub-text);
+  font-weight: 500;
+}
+
+.hv-balance-amount {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: monospace;
+  margin-left: 6px;
+}
+
+/* =========================
+   HISTORY CARD
+========================= */
+
+.hv-history-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.hv-no-history {
+  color: #9ca3af;
+  text-align: center;
+  padding: 20px 0;
+  margin: 0;
+}
+
+.hv-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hv-history-item {
+  border-bottom: 1px solid var(--item-border);
+  padding-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* =========================
+   HISTORY ROWS
+========================= */
+
+.hv-history-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.hv-history-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
   flex: 1;
 }
 
-/* FAB */
-.fab {
+.hv-history-date {
+  font-size: 12px;
+  color: #9ca3af;
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+.hv-history-place {
+  font-size: 12px;
+  color: #9ca3af;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.hv-history-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+.hv-history-payer {
+  font-size: 11px;
+  color: var(--main-text);
+  font-family: monospace;
+  background-color: var(--badge-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* =========================
+   DESCRIPTION & AMOUNT
+========================= */
+
+.hv-history-desc {
+  font-weight: 500;
+  color: var(--main-text);
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  padding-right: 12px;
+  text-align: left;
+}
+
+.hv-history-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.hv-history-amount {
+  font-size: 15px;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+/* =========================
+   ICON BUTTONS
+========================= */
+
+.hv-icon-btn {
+  background: none;
+  border: none;
+  padding: 4px 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hv-icon-btn:hover img {
+  opacity: 1 !important;
+  filter: brightness(1.2) !important;
+}
+
+/* =========================
+   ADD BUTTON (FAB)
+========================= */
+
+.hv-add-btn {
   position: fixed;
   bottom: 16px;
   right: 16px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #111827;
-  color: white;
+  border: none;
   font-size: 28px;
+  font-weight: 300;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 999;
+  line-height: 1;
 }

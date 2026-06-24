@@ -1,0 +1,102 @@
+/* =========================
+   LOADING
+========================= */
+
+.ms-loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+.ms-loading-text {
+  color: #666;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.ms-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255,255,255,0.98);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+.ms-box {
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.ms-title {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.ms-desc {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* =========================
+   GRID BUTTONS
+========================= */
+
+.ms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.ms-member-btn {
+  padding: 20px 10px;
+  background: #fff;
+  border: 2px solid #0070f3;
+  border-radius: 8px;
+  color: #0070f3;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,70,243,0.1);
+  transition: all 0.2s;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ms-member-btn:hover {
+  background: #0070f3;
+  color: #fff;
+}
+
+/* =========================
+   NOTE
+========================= */
+
+.ms-note {
+  color: #666;
+  font-size: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}

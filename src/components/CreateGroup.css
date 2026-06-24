@@ -234,3 +234,10 @@
   font-size: 12px;
   color: rgba(255,255,255,0.4);
 }
+
+.line-icon {
+  height: 1em;      /* ← 文字サイズに完全フィット */
+  width: auto;      /* ← アスペクト比維持 */
+  vertical-align: middle; /* ← 文字と高さを揃える */
+  margin-right: 4px; /* ← 少し余白 */
+}

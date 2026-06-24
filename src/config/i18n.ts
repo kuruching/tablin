@@ -94,6 +94,11 @@ export const messages = {
     simpleShare: "URLを共有するだけで、貸し借りをシンプルに管理。",
     exportCsvAll: "全履歴CSV出力",
     autoDeleteOneYear: "一年放置のURLは自動削除",
+    loadingMembers: "メンバーデータを読み込んでいます...",
+    selectWho: "あなたは誰ですか？",
+    selectYourName: "このブラウザでアプリを利用するあなたの名前を選択してください。",
+    autoSelectNextTime: "次回以降は自動的にこのメンバーとして開きます。",
+    clearCacheToChange: "変更したい場合はキャッシュを削除してください。",
   },
   'en-US': {
     menu: 'Menu',
@@ -190,6 +195,11 @@ export const messages = {
     simpleShare: "Just share the URL to manage lending and borrowing easily.",
     exportCsvAll: "Export full history as CSV",
     autoDeleteOneYear: "URLs inactive for one year are automatically deleted",
+    loadingMembers: "Loading member data...",
+    selectWho: "Who are you?",
+    selectYourName: "Please select your name to use this app in this browser.",
+    autoSelectNextTime: "You will be automatically logged in as this member next time.",
+    clearCacheToChange: "If you want to change it, please clear your cache.",
   },
   // 必要に応じて zh-TW, ko-KR も追加
 } as const;
