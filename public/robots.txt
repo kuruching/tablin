@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tablin-theta.vercel.app/sitemap-v2.xml
+Sitemap: https://tablin-theta.vercel.app/sitemap.xml
