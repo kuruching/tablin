@@ -17,7 +17,7 @@ export default function MemberSelector({
   currentMember,
   onSelectMember,
   groupId,
-  premiumPayerId,
+  //premiumPayerId,
   t
 }: MemberSelectorProps) {
   const storageKey = `tsukemawari_user_${groupId}`;
