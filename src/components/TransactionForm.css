@@ -1,0 +1,172 @@
+/* =========================
+   OVERLAY
+========================= */
+
+.tf-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 16px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.tf-modal {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 16px;
+  padding: 20px 16px 24px 16px;
+  box-sizing: border-box;
+  box-shadow:
+    0 10px 25px -5px rgba(0,0,0,0.1),
+    0 8px 10px -6px rgba(0,0,0,0.1);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.tf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.tf-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: #111827;
+}
+
+.tf-close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.tf-close-btn:hover {
+  color: #6b7280;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.tf-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tf-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #4b5563;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.tf-required {
+  color: #ef4444;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.tf-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+  outline: none;
+  background-color: #fff;
+  color: #111827;
+}
+
+.tf-input:focus {
+  border-color: #111827;
+}
+
+/* =========================
+   ROWS
+========================= */
+
+.tf-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.tf-col {
+  flex: 1;
+}
+
+.tf-arrow {
+  padding-bottom: 10px;
+  color: #9ca3af;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.tf-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tf-btn-cancel {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tf-btn-cancel:hover {
+  background-color: #f3f4f6;
+}
+
+.tf-btn-save {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #111827;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tf-btn-save:hover {
+  background-color: #1f2937;
+}
